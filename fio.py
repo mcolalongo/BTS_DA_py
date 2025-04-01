@@ -1,4 +1,3 @@
-import pandas as pd
 import os
 
 
@@ -8,8 +7,11 @@ class fileIO:
     """
     def __init__(self, filepath):
         self.path = filepath
-        self.list = []
-        for i in os.listdir(self.path):
-            if ".xlsx" in i:
-                self.list.append(i)
-        
+        self.dict = {}
+        self.family = input("Insert group family to split data the data:").split(",")
+        for j in self.family:
+            self.list = []
+            for i in os.listdir(self.path):
+                if (".xlsx" in i) and (j in i):
+                    self.list.append(i)
+            self.dict[f"{j.replace("-","")}"] = self.list
